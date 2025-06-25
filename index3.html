@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Birthday Surprise</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #111;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    #cake {
+      width: 250px;
+      margin-top: 100px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    #cake:hover {
+      transform: scale(1.1);
+    }
+
+    #birthday-container {
+      display: none;
+      position: relative;
+      background: white url('https://wallpapers.com/images/featured/white-and-pink-background-pawa7b2ltzdr6387.jpg') repeat; /* pink hearts background */
+      background-size: 100px 100px;
+      height: 100vh;
+      color: #e91e63;
+      padding-top: 50px;
+    }
+
+    #photo {
+      width: 300px;
+      height: 300px;
+      border-radius: 20px;
+      border: 5px solid #e91e63;
+      margin: 20px auto;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 0 20px pink;
+    }
+
+    #message {
+      font-size: 40px;
+      font-weight: bold;
+      margin-top: 20px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .balloon {
+      position: absolute;
+      bottom: -150px;
+      width: 50px;
+      height: 70px;
+      background-color: #ff4081;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      animation: float 6s infinite ease-in-out;
+    }
+
+    .balloon::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      width: 2px;
+      height: 20px;
+      background: #333;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) translateX(0); }
+      50% { transform: translateY(-300px) translateX(30px); }
+      100% { transform: translateY(0) translateX(0); }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- 🎂 Birthday Cake -->
+  <img id="cake" src="https://handletheheat.com/wp-content/uploads/2015/03/Best-Birthday-Cake-with-milk-chocolate-buttercream-SQUARE.jpg" alt="Birthday Cake" title="Click Me for a Surprise!">
+
+  <!-- 🎉 Birthday Surprise Container -->
+  <div id="birthday-container">
+    <div id="message">🎈 Happy Birthday, Shahrukh! 🎈</div>
+    <div id="photo" style="background-image: url('https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRNW5_PY7EhaPpWamQLAlXZlQ2U28FZpfcSmffSY62jEbB13GiZKKNJGsmOK3VAsiqsjZ2YLQjqtUDj-TXDBOnBNQ');"></div>
+  </div>
+
+  <script>
+    const cake = document.getElementById('cake');
+    const birthdayContainer = document.getElementById('birthday-container');
+
+    function launchBalloons() {
+      for (let i = 0; i < 10; i++) {
+        const balloon = document.createElement('div');
+        balloon.className = 'balloon';
+        balloon.style.left = `${Math.random() * 100}%`;
+        balloon.style.backgroundColor = ['#ff4081', '#e91e63', '#f48fb1', '#ec407a'][Math.floor(Math.random() * 4)];
+        birthdayContainer.appendChild(balloon);
+      }
+    }
+
+    cake.addEventListener('click', () => {
+      cake.style.display = 'none';
+      birthdayContainer.style.display = 'block';
+      launchBalloons();
+    });
+  </script>
+
+</body>
+</html>
